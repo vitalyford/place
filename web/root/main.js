@@ -147,6 +147,17 @@ const GUI = (cvs, glWindow, place) => {
 	}
 
 	const drawPixel = (pos, color) => {
+		var parts = colorSwatch.style.backgroundColor.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+		delete(parts[0]);
+		for (var i = 1; i <= 3; ++i) {
+		  parts[i] = parseInt(parts[i]).toString(16);
+		  if (parts[i].length == 1) parts[i] = '0' + parts[i];
+		}
+		let hex = parts.join('');
+
+		color[0] = parseInt(hex.substring(0,2), 16);
+		color[1] = parseInt(hex.substring(2,4), 16);
+		color[2] = parseInt(hex.substring(4,6), 16);
 		pos = glWindow.click(pos);
 		if (pos) {
 			const oldColor = glWindow.getColor(pos);

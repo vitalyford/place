@@ -6,6 +6,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	<meta name="description" content="An online pixel canvas inspired by r/place.">
 	<meta name="keywords" content="r/place, place, game, golang, canvas">
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.css">
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css">
+	<link rel="stylesheet" href="jquery.simplecolorpicker.css">
 	<link rel="preload" href="/place.png" as="fetch" crossorigin>
 </head>
 <body>
@@ -14,7 +17,36 @@
 		<p id="loading-p"></p>
 		<div id="color-wrapper">
 			<div id="color-swatch"></div>
+			<button id="init" class="btn btn-primary" style="display: none;">Init the jQuery plugin</button>
 			<input id="color-field" type="text" placeholder="#000000" value="#000000" />
+		</div>
+		<div id="color-wrapper-settings">
+			<select name="colorpicker-longlist" onchange="update(event)">
+				<option value="#ac725e">#ac725e</option>
+				<option value="#d06b64">#d06b64</option>
+				<option value="#f83a22">#f83a22</option>
+				<option value="#fa573c">#fa573c</option>
+				<option value="#ff7537">#ff7537</option>
+				<option value="#ffad46">#ffad46</option>
+				<option value="#42d692">#42d692</option>
+				<option value="#16a765">#16a765</option>
+				<option value="#7bd148">#7bd148</option>
+				<option value="#b3dc6c">#b3dc6c</option>
+				<option value="#fbe983">#fbe983</option>
+				<option value="#fad165">#fad165</option>
+				<option value="#92e1c0">#92e1c0</option>
+				<option value="#9fe1e7">#9fe1e7</option>
+				<option value="#9fc6e7">#9fc6e7</option>
+				<option value="#4986e7">#4986e7</option>
+				<option value="#9a9cff">#9a9cff</option>
+				<option value="#b99aff">#b99aff</option>
+				<option value="#c2c2c2">#c2c2c2</option>
+				<option value="#cabdbf">#cabdbf</option>
+				<option value="#cca6ac">#cca6ac</option>
+				<option value="#f691b2">#f691b2</option>
+				<option value="#cd74e6">#cd74e6</option>
+				<option value="#a47ae2">#a47ae2</option>
+			</select>
 		</div>
 		<div id="zoom-wrapper">
 			<button class="zoom-button" id="zoom-out">
@@ -25,11 +57,35 @@
 			</button>
 		</div>
 	</div>
+
 	<script src="main.js"></script>
 	<script src="place.js"></script>
 	<script src="glwindow.js"></script>
 	<script>
 		main();
+	</script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js"></script>
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.js"></script>
+	<script src="jquery.simplecolorpicker.js"></script>
+
+	<script>
+		$(document).ready(function() {
+			$('select[name="colorpicker-change-background-color"]').on('change', function() {
+				$(document.body).css('background-color', $('select[name="colorpicker-change-background-color"]').val());
+			});
+			$('select[name="colorpicker-regularfont"]').simplecolorpicker({theme: 'regularfont'});
+			$('select[name="colorpicker-picker-longlist"]').simplecolorpicker({picker: true, theme: 'glyphicons'});
+
+			$('#init').on('click', function() {
+				$('select[name="colorpicker-regularfont"]').simplecolorpicker();
+				$('select[name="colorpicker-longlist"]').simplecolorpicker();
+			});
+			$('#init').trigger('click');
+		});
+		function update(evt) {
+			document.getElementById('color-field').value = evt.target.value;
+			document.getElementById('color-swatch').style.backgroundColor = evt.target.value;
+		}
 	</script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-const LOCAL_MODE = false;
+const LOCAL_MODE = true;
 const LOCAL_IP_ADDRESS = "localhost:8080";
 
 class Place {
