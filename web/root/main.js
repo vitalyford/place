@@ -49,19 +49,6 @@ const GUI = (cvs, glWindow, place) => {
 		glWindow.draw();
 	});
 
-	window.addEventListener("gesturechange", e => {
-		let zoom = glWindow.getZoom();
-		if (e.scale < 1.0) {
-			// User moved fingers closer together
-			zoom /= 1.05;
-		} else if (e.scale > 1.0) {
-			// User moved fingers further apart
-			zoom *= 1.05;
-		}
-		glWindow.setZoom(zoom);
-		glWindow.draw();
-	});
-
 	document.querySelector("#zoom-in").addEventListener("click", () => {
 		zoomIn();
 	});
