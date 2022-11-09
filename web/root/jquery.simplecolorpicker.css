@@ -47,11 +47,11 @@
 
 .simplecolorpicker.inline {
   display: inline-block;
-  padding: 6px 0;
+  padding: 5.25px 0;
 }
 
 .simplecolorpicker span {
-  margin: 0 5px 5px 0;
+  margin: 0 3px 3px;
 }
 
 .simplecolorpicker.icon,
@@ -75,7 +75,7 @@
 .simplecolorpicker span.color:hover,
 .simplecolorpicker span.color[data-selected],
 .simplecolorpicker span.color[data-selected]:hover {
-  border: 1px solid #222; /* @gray-dark */
+  border: 1.5px solid #222; /* @gray-dark */
 }
 .simplecolorpicker span.color[data-selected]:after {
   color: #fff;
